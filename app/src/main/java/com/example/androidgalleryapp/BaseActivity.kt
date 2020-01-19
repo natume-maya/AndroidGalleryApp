@@ -6,7 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 
-class BaseActivity : AppCompatActivity() {
+open class BaseActivity : AppCompatActivity() {
 
     fun startFragmentForResult(fragment: BaseFragment) {
         val transaction = supportFragmentManager.beginTransaction()
