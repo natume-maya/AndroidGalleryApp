@@ -5,14 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.app_domain.domain.Request
 
-class BaseFragment : Fragment() {
+open class BaseFragment : Fragment() {
 
     private var resultOk = AppCompatActivity.RESULT_OK
+
+    private val requestCode: Int
+        get() = Request.REQUEST_NONE.ordinal
 
     fun finishFragment(intent: Intent) {
         val base = activity
         if (base is BaseActivity) {
-            base.onFragmentResult(getRequestCode(), getResult(), intent)
+            base.onFragmentResult(requestCode, resultOk, intent)
         }
     }
 
@@ -35,17 +38,5 @@ class BaseFragment : Fragment() {
         if (base is BaseActivity) {
             base.showError()
         }
-    }
-
-    protected fun getRequestCode(): Int {
-        return Request.REQUEST_NONE.ordinal
-    }
-
-    protected fun setResult(result: Int) {
-        resultOk = result
-    }
-
-    protected fun getResult(): Int {
-        return resultOk
     }
 }
