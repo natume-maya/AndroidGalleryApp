@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':app-domain', ':app-data'
 rootProject.name='AndroidGalleryApp'
