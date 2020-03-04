@@ -8,21 +8,24 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.example.androidgalleryapp.BaseFragment
 import com.example.androidgalleryapp.R
 import com.example.androidgalleryapp.asynctask.UploadCallback
 import com.example.androidgalleryapp.asynctask.UploadRequester
+import com.example.androidgalleryapp.db.PhotoDBHelper
 
 class PhotoDetailFragment : BaseFragment() {
 
     companion object {
-        private val UPLOAD_SERVER = ""
+        private const val UPLOAD_SERVER = "http://160.16.88.242/photo_server/api/api_upload.php"
     }
 
     private var id: String? = null
     private var path: String? = null
     private var title: String? = null
     private var description: String? = null
+    private val photoDBHelper: PhotoDBHelper = PhotoDBHelper(activity)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -55,6 +58,7 @@ class PhotoDetailFragment : BaseFragment() {
                 }
 
                 override fun onPostExecute(string: String) {
+                    photoDBHelper.insertValues(id, path, title, description)
                 }
 
                 override fun onCancelled() {
@@ -66,7 +70,12 @@ class PhotoDetailFragment : BaseFragment() {
         }
         val deleteButton = view.findViewById<Button>(R.id.delete)
         deleteButton.setOnClickListener {
-
+            val deleteNumber = photoDBHelper.deleteValues(id)
+            if (deleteNumber <= 0) {
+                Toast.makeText(activity, "削除するデータがありません", Toast.LENGTH_SHORT).show()
+            } else{
+                Toast.makeText(activity, "データを削除しました", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
