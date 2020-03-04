@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AndroidGalleryApp</string>
+    <string name="upload">アップロード</string>
+    <string name="delete">削除</string>
 </resources>
