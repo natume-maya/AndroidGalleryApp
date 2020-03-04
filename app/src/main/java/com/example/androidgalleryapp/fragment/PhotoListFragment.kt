@@ -43,6 +43,8 @@ class PhotoListFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val photoDao = getList()
+
+
     }
 
     @TargetApi(Build.VERSION_CODES.Q)
@@ -67,7 +69,9 @@ class PhotoListFragment : BaseFragment() {
                         MediaStore.Images.Thumbnails.getThumbnail(contentResolver, image, MediaStore.Images.Thumbnails.MICRO_KIND, null)
                     }
                     dao.image = thumbnail
+                    list.add(dao)
                 } while (cursor.moveToFirst())
+                cursor.close()
             }
         } catch (e: Exception) {
             Log.d(TAG, "例外 = $e")
