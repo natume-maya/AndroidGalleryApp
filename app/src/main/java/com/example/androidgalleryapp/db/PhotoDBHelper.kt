@@ -11,7 +11,7 @@ import com.example.androidgalleryapp.db.PhotoBaseTable.Photo.COLUMN_PATH
 import com.example.androidgalleryapp.db.PhotoBaseTable.Photo.COLUMN_DESCRIPTION
 
 class PhotoDBHelper(
-        private val context: Context
+        private val context: Context?
 ) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
 
     companion object {
@@ -30,7 +30,7 @@ class PhotoDBHelper(
         createTable(db)
     }
 
-    fun insertValues(id: String, path: String, title: String, description: String) : Long {
+    fun insertValues(id: String?, path: String?, title: String?, description: String?) : Long {
         val db = writableDatabase
         val contentValue = ContentValues().apply {
             put(COLUMN_ID, id)
@@ -43,7 +43,7 @@ class PhotoDBHelper(
         return registerNumber
     }
 
-    fun deleteValues(id: String): Int {
+    fun deleteValues(id: String?): Int {
         val db = writableDatabase
         val contentValues = ContentValues().put(COLUMN_ID, id)
         val deleteNumber = db.delete(TABLE_NAME, "$COLUMN_ID = ?", arrayOf(id))

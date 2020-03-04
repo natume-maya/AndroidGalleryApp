@@ -28,7 +28,7 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-    fun onFragmentResult(requestCode: Int, resultCode: Int, intent: Intent) {
+    open fun onFragmentResult(requestCode: Int, resultCode: Int, intent: Intent) {
     }
 
     fun showProgress() {
