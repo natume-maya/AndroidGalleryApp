@@ -1,6 +1,7 @@
 package com.example.androidgalleryapp.fragment
 
 import android.annotation.TargetApi
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidgalleryapp.BaseFragment
 import com.example.androidgalleryapp.R
+import com.example.androidgalleryapp.adapter.PhotoAdapter
 import com.example.app_data.PhotoDao
 import com.example.app_domain.domain.Request
 import java.lang.Exception
@@ -44,7 +46,18 @@ class PhotoListFragment : BaseFragment() {
 
         val photoDao = getList()
 
-
+        val adapter = object : PhotoAdapter(photoDao) {
+            override fun onRecyclerViewClicked(photoDao: PhotoDao?) {
+                val intent = Intent().apply {
+                    putExtra("ID", photoDao!!.id)
+                    putExtra("PATH", photoDao.path)
+                    putExtra("FILE_NAME", photoDao.title)
+                    putExtra("DESCRIPTION", photoDao.description)
+                }
+                finishFragment(intent)
+            }
+        }
+        recyclerView!!.adapter = adapter
     }
 
     @TargetApi(Build.VERSION_CODES.Q)
