@@ -1,5 +1,6 @@
 package com.example.androidgalleryapp.fragment
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +15,8 @@ import com.example.androidgalleryapp.R
 import com.example.androidgalleryapp.asynctask.UploadCallback
 import com.example.androidgalleryapp.asynctask.UploadRequester
 import com.example.androidgalleryapp.db.PhotoDBHelper
+import com.example.app_data.ResultDao
+import com.example.app_domain.domain.Request
 
 class PhotoDetailFragment : BaseFragment() {
 
@@ -26,6 +29,9 @@ class PhotoDetailFragment : BaseFragment() {
     private var title: String? = null
     private var description: String? = null
     private val photoDBHelper: PhotoDBHelper = PhotoDBHelper(activity)
+
+    val requestCode: Int
+        get() = Request.REQUEST_PHOTO_DETAIL.ordinal
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -58,7 +64,13 @@ class PhotoDetailFragment : BaseFragment() {
                 }
 
                 override fun onPostExecute(string: String) {
-                    photoDBHelper.insertValues(id, path, title, description)
+                    val resultDao = ResultDao(string)
+                    if (resultDao.isResult) {
+                        photoDBHelper.insertValues(id, path, title, description)
+
+                        val intent = Intent()
+                        finishFragment(intent)
+                    }
                 }
 
                 override fun onCancelled() {
@@ -73,7 +85,7 @@ class PhotoDetailFragment : BaseFragment() {
             val deleteNumber = photoDBHelper.deleteValues(id)
             if (deleteNumber <= 0) {
                 Toast.makeText(activity, "削除するデータがありません", Toast.LENGTH_SHORT).show()
-            } else{
+            } else {
                 Toast.makeText(activity, "データを削除しました", Toast.LENGTH_SHORT).show()
             }
         }
