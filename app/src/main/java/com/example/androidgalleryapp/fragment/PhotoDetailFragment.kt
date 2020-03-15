@@ -56,6 +56,7 @@ class PhotoDetailFragment : BaseFragment() {
 
         val button: Button = view.findViewById(R.id.upload)
         button.setOnClickListener {
+            showProgress()
             val requester = UploadRequester(object : UploadCallback {
                 override fun onPreExecute() {
                 }
@@ -64,16 +65,22 @@ class PhotoDetailFragment : BaseFragment() {
                 }
 
                 override fun onPostExecute(string: String) {
+                    dismissProgress()
+
                     val resultDao = ResultDao(string)
                     if (resultDao.isResult) {
                         photoDBHelper.insertValues(id, path, title, description)
 
                         val intent = Intent()
                         finishFragment(intent)
+                    } else {
+                        showError()
                     }
                 }
 
                 override fun onCancelled() {
+                    dismissProgress()
+                    showError()
                 }
 
             })

@@ -5,8 +5,12 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
+import com.example.androidgalleryapp.dialog.PhotoErrorDialogFragment
+import com.example.androidgalleryapp.dialog.PhotoProgressDialogFragment
 
 open class BaseActivity : AppCompatActivity() {
+
+    private var progressDialog: PhotoProgressDialogFragment? = null
 
     fun startFragmentForResult(fragment: BaseFragment) {
         val transaction = supportFragmentManager.beginTransaction()
@@ -32,11 +36,19 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     fun showProgress() {
+        progressDialog = PhotoProgressDialogFragment.getInstance()
+        progressDialog!!.show(this)
     }
 
     fun dismissProgress() {
+        if (progressDialog != null) {
+            progressDialog!!.dismissAllowingStateLoss()
+            progressDialog = null
+        }
     }
 
     fun showError() {
+        val errorDialog = PhotoErrorDialogFragment.getInstance()
+        errorDialog.show(this)
     }
 }
