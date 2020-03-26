@@ -17,6 +17,7 @@ import com.example.androidgalleryapp.asynctask.UploadRequester
 import com.example.androidgalleryapp.db.PhotoDBHelper
 import com.example.app_data.ResultDao
 import com.example.app_domain.domain.Request
+import com.google.android.material.snackbar.Snackbar
 
 class PhotoDetailFragment : BaseFragment() {
 
@@ -91,10 +92,15 @@ class PhotoDetailFragment : BaseFragment() {
         deleteButton.setOnClickListener {
             val deleteNumber = photoDBHelper.deleteValues(id)
             if (deleteNumber <= 0) {
-                Toast.makeText(activity, "削除するデータがありません", Toast.LENGTH_SHORT).show()
+                showSnackbar(getString(R.string.delete_not_file))
             } else {
-                Toast.makeText(activity, "データを削除しました", Toast.LENGTH_SHORT).show()
+                showSnackbar(getString(R.string.delete_success))
             }
         }
+    }
+
+    private fun showSnackbar(message: String) {
+        val view = view ?: return
+        Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
     }
 }
