@@ -9,14 +9,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.example.androidgalleryapp.BaseFragment
 import com.example.androidgalleryapp.R
 import com.example.androidgalleryapp.asynctask.UploadCallback
 import com.example.androidgalleryapp.asynctask.UploadRequester
 import com.example.androidgalleryapp.db.PhotoDBHelper
 import com.example.app_data.ResultDao
-import com.example.app_domain.domain.Request
+import com.example.app_domain.domain.model.Request
 import com.google.android.material.snackbar.Snackbar
 
 class PhotoDetailFragment : BaseFragment() {

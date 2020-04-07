@@ -7,7 +7,7 @@ import android.os.Bundle
 import com.example.androidgalleryapp.db.PhotoDBHelper
 import com.example.androidgalleryapp.fragment.PhotoDetailFragment
 import com.example.androidgalleryapp.fragment.PhotoListFragment
-import com.example.app_domain.domain.Request
+import com.example.app_domain.domain.model.Request
 
 class MainActivity : BaseActivity() {
 
