@@ -1,4 +1,4 @@
-package com.example.androidgalleryapp.fragment
+package com.example.androidgalleryapp.fragment.list
 
 import android.content.Intent
 import android.os.Bundle
