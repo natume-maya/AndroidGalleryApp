@@ -20,9 +20,6 @@ jobs:
       - checkout
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-      - run: gem install danger-todoist
-      - run:
-          name: danger
       - run:
           name: update android sdk
           command: |
@@ -45,3 +42,5 @@ jobs:
       - run:
           name: Generate APK
           command: ./gradlew assembleDebug
+      - run: gem install danger-todoist
+      - run: danger
