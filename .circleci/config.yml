@@ -1,9 +1,5 @@
 version: 2
 jobs:
-  danger:
-    docker:
-      - image: dantoml/danger:latest
-
   build:
     docker:
       - image: circleci/android:api-29
