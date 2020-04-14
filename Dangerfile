@@ -6,7 +6,7 @@ warn("このPRはまだ作業中だよー") if github.pr_title.include? "[WIP]"
 
 # ktlint
 checkstyle_format.base_path = /repo
-checkstyle_format.report app/build/reports/checkstyle/checkstyle.xml
+checkstyle_format.report reports/checkstyle/checkstyle.xml
 
 # Android Lint
 android_lint.gradle_task = "app:lint"
