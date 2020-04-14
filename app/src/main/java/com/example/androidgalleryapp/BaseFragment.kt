@@ -3,7 +3,7 @@ package com.example.androidgalleryapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.app_domain.domain.model.Request
+import com.example.app_domain.model.Request
 
 open class BaseFragment : Fragment() {
 

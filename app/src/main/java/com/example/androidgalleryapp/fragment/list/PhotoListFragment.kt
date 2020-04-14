@@ -11,7 +11,7 @@ import com.example.androidgalleryapp.BaseFragment
 import com.example.androidgalleryapp.R
 import com.example.androidgalleryapp.adapter.PhotoAdapter
 import com.example.app_data.PhotoDao
-import com.example.app_domain.domain.model.Request
+import com.example.app_domain.model.Request
 
 class PhotoListFragment : BaseFragment() {
 

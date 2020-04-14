@@ -1,4 +1,4 @@
-package com.example.app_domain.domain.model
+package com.example.app_domain.model
 
 enum class Request {
     REQUEST_NONE,

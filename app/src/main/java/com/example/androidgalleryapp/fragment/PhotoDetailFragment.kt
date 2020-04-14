@@ -1,7 +1,10 @@
 package com.example.androidgalleryapp.fragment
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,13 +12,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.example.androidgalleryapp.BaseFragment
 import com.example.androidgalleryapp.R
 import com.example.androidgalleryapp.asynctask.UploadCallback
 import com.example.androidgalleryapp.asynctask.UploadRequester
 import com.example.androidgalleryapp.db.PhotoDBHelper
 import com.example.app_data.ResultDao
-import com.example.app_domain.domain.model.Request
+import com.example.app_domain.model.AppChannelID
+import com.example.app_domain.model.Request
 import com.google.android.material.snackbar.Snackbar
 
 class PhotoDetailFragment : BaseFragment() {
@@ -72,6 +78,7 @@ class PhotoDetailFragment : BaseFragment() {
                         photoDBHelper.insertValues(id, path, title, description)
 
                         val intent = Intent()
+                        showNotification(getString(R.string.upload_complete), "")
                         finishFragment(intent)
                     } else {
                         showError()
@@ -101,5 +108,17 @@ class PhotoDetailFragment : BaseFragment() {
     private fun showSnackbar(message: String) {
         val view = view ?: return
         Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
+    }
+
+    private fun showNotification(title: String, message: String) {
+        val builder = NotificationCompat.Builder(activity!!, AppChannelID.UPLOAD_COMPLETE.channel).apply {
+            setContentTitle(title)
+            setContentText(message)
+            setTicker(title)
+        }.build()
+
+        with(NotificationManagerCompat.from(activity!!)) {
+            notify(0, builder)
+        }
     }
 }
