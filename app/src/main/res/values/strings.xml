@@ -3,6 +3,7 @@
     <string name="upload">アップロード</string>
     <string name="delete">削除</string>
     <string name="dialog_progress_title">アップロード中</string>
+    <string name="upload_complete">アップロードが完了しました</string>
     <string name="wait">しばらくお待ちください</string>
     <string name="dialog_progress_cancel">キャンセル</string>
     <string name="error_dialog_title">エラーが発生しました</string>
