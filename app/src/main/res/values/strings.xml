@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">AndroidGalleryApp</string>
+    <string name="fragment_top_image">画像</string>
+    <string name="fragment_top_video">動画</string>
     <string name="upload">アップロード</string>
     <string name="delete">削除</string>
     <string name="dialog_progress_title">アップロード中</string>
