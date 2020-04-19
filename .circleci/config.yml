@@ -3,6 +3,11 @@ jobs:
   build:
     docker:
       - image: circleci/android:api-29
+        environment:
+          - TZ: "/usr/share/zoneinfo/Asia/Tokyo"
+          - LANG: ja_JP.UTF-8
+          - LC_ALL: C.UTF-8
+          - LANGUAGE: ja_JP.UTF-8
 
     environment:
       JVM_OPTS: -Xmx3200m
@@ -11,7 +16,6 @@ jobs:
       - checkout
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-
       - run:
           name: update android sdk
           command: |
@@ -34,3 +38,5 @@ jobs:
       - run:
           name: Generate APK
           command: ./gradlew assembleDebug
+      - run: gem install danger-todoist
+      - run: danger
