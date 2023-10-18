@@ -33,7 +33,7 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit
     androidTestImplementation libs.androidx.test.espresso.espresso.core
-    implementation "org.jetbrains.kotlin:kotlin-reflect:1.3.50"
+    implementation libs.org.jetbrains.kotlin.kotlin.reflect
 }
 repositories {
     mavenCentral()
