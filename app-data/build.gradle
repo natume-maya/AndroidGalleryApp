@@ -28,17 +28,16 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':app-domain')
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation "androidx.core:core-ktx:1.10.0"
-    implementation "android.arch.persistence.room:runtime:1.1.1"
-    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
-    kapt "android.arch.persistence.room:compiler:1.1.1"
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
-    implementation "com.squareup.retrofit2:converter-moshi:${versions.retrofit}"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}"
-    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
-    implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.core.core.ktx
+    implementation libs.android.arch.persistence.room.runtime
+    annotationProcessor libs.android.arch.persistence.room.compiler
+    kapt libs.android.arch.persistence.room.compiler
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.ext.junit
+    androidTestImplementation libs.androidx.test.espresso.espresso.core
+    implementation libs.com.squareup.retrofit2.retrofit
+    implementation libs.com.squareup.retrofit2.converter.moshi
+    implementation libs.com.jakewharton.retrofit.retrofit2.kotlin.coroutines.adapter
+    implementation libs.com.squareup.okhttp3.okhttp
 }
