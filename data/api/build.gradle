@@ -1,0 +1,43 @@
+plugins {
+    id("com.android.library")
+    id("kotlin-android")
+}
+
+android {
+    namespace 'com.example.api'
+    compileSdkVersion versions.compileSdk
+
+    defaultConfig {
+        minSdkVersion versions.minSdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.core.core.ktx
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.ext.junit
+    androidTestImplementation libs.androidx.test.espresso.espresso.core
+    implementation libs.com.squareup.retrofit2.retrofit
+    implementation libs.com.squareup.retrofit2.converter.moshi
+    implementation libs.com.jakewharton.retrofit.retrofit2.kotlin.coroutines.adapter
+    implementation libs.com.squareup.okhttp3.okhttp
+
+}

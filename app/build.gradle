@@ -19,11 +19,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
     implementation project(':app-domain')
     implementation project(':app-data')
+    implementation(project(":data:repository"))
+    implementation(project(":data:api"))
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation libs.androidx.appcompat
     implementation libs.androidx.constraintlayout
