@@ -1,16 +1,16 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-android'
+plugins {
+    id("com.android.application")
+    id("kotlin-android")
+}
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion versions.compileSdk
     defaultConfig {
-        applicationId "com.example.androidgalleryapp"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        applicationId = project.properties.packageName
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode = Integer.parseInt(project.properties.versionCode)
+        versionName = project.properties.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -25,16 +25,15 @@ dependencies {
     implementation project(':app-domain')
     implementation project(':app-data')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation "androidx.core:core-ktx:+"
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.google.android.material:material:1.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-    implementation "org.jetbrains.kotlin:kotlin-reflect:1.3.50"
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.core.core.ktx
+    implementation libs.androidx.recyclerview
+    implementation libs.com.google.android.material
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.ext.junit
+    androidTestImplementation libs.androidx.test.espresso.espresso.core
+    implementation libs.org.jetbrains.kotlin.kotlin.reflect
 }
 repositories {
     mavenCentral()
